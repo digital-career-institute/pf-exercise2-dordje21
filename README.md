@@ -1,3 +1,32 @@
+CREATE TABLE Patients (
+    PatientID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Age INT,
+    Gender VARCHAR(10),
+    PsychologistID INT,
+    FOREIGN KEY (PsychologistID) REFERENCES Psychologists(PsychologistID)
+);
+
+ALTER TABLE Patients
+DROP PRIMARY KEY;
+
+ALTER TABLE Patients
+DROP FOREIGN KEY PsychologistID;
+
+ALTER TABLE Patients
+ADD PRIMARY KEY (PatientID);
+
+ALTER TABLE Appointments
+ADD PRIMARY KEY (PatientID, AppointmentDate);
+
+ALTER TABLE Patients
+DROP FOREIGN KEY PsychologistID;
+
+ALTER TABLE Patients
+ADD CONSTRAINT FK_PsychologistID
+FOREIGN KEY (PsychologistID) REFERENCES Psychologists(PsychologistID);
+
+
 Objective: To comprehend the significance of primary keys and foreign keys in database management, emphasizing their role
 
 Scenario:
